@@ -14,28 +14,31 @@ RUN git clone --recursive https://github.com/riscv-collab/riscv-gnu-toolchain.gi
 ENV RV32 /opt/rv32gc
 RUN cd riscv-gnu-toolchain && \
     mkdir build && cd build && \
-    ../configure --prefix=$RV32 --with-arch=rv32gc --with-abi=ilp32d && \
+    ../configure --prefix=$RV32/cross --with-arch=rv32gc --with-abi=ilp32d && \
     make -j$(nproc) && \
     cd ../../
 
-RUN echo 'export PATH=$PATH:$RV32/bin' >> ~/.bashrc && source ~/.bashrc
+RUN echo 'export PATH=$PATH:$RV32/cross/bin' >> ~/.bashrc && source ~/.bashrc
+RUN export PATH=$PATH:$RV32/cross/bin
 
 RUN apt install device-tree-compiler
 RUN git clone https://github.com/riscv-software-src/riscv-isa-sim.git
 RUN cd riscv-isa-sim && \
     mkdir build && cd build && \
-    ../configure --prefix=$RV32 --with-isa=rv32gc && \
+    ../configure --prefix=$RV32/spike --with-isa=rv32gc && \
     make && \
     make install
+RUN export PATH=$PATH:$RV32/spike/bin
 
 RUN git clone https://github.com/riscv-software-src/riscv-pk.git
 RUN cd riscv-pk && \
     mkdir build && cd build && \
-    ../configure --prefix=$RV32 --host=riscv32-unknown-elf && \
+    ../configure --prefix=$RV32/pk --host=riscv32-unknown-elf && \
     make && \
     make install
+RUN export PATH=$PATH:$RV32/pk/riscv32-unknown-elf/bin
 
 RUN echo 'export PATH=$PATH:$RV32/riscv32-unknown-elf' >> ~/.bashrc && source ~/.bashrc
 
 RUN cd /work
-RUN echo '#include <stdio.h>
+RUN echo 'Hello, World'
