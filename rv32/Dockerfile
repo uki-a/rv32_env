@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 LABEL version="1.0"
-LABEL description="RV32GC 開発環境"
+LABEL description="RV32GC Compiler Environment"
 
 WORKDIR /tmp/
 
