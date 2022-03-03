@@ -31,7 +31,7 @@ RUN cd riscv-pk && \
     make && \
     make install
 
-RUN echo 'export PATH=$PATH:RISCV' >> ~/.bashrc
+RUN echo 'export PATH=$PATH:$RV32/bin:$RV32/riscv32-unknown-elf' >> ~/.bashrc
 
 RUN cd /work
 RUN echo '#include <stdio.h>
