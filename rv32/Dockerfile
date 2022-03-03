@@ -16,6 +16,8 @@ RUN cd riscv-gnu-toolchain && \
     make -j$(nproc) && \
     cd ../../
 
+RUN echo 'export PATH=$PATH:$RV32/bin'
+
 RUN apt install device-tree-compiler
 RUN git clone https://github.com/riscv-software-src/riscv-isa-sim.git
 RUN cd riscv-isa-sim && \
