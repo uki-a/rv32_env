@@ -32,7 +32,7 @@ RUN export PATH=$PATH:$RV32/spike/bin
 
 RUN git clone https://github.com/riscv-software-src/riscv-pk.git
 RUN cd riscv-pk
-RUN git checkout 423801e35d048187d88fcbff55e20c4c34d27bee
+RUN git reset --hard 423801e35d048187d88fcbff55e20c4c34d27bee
 RUN mkdir build && cd build && \
     ../configure --prefix=$RV32/pk --host=riscv32-unknown-elf && \
     make && \
