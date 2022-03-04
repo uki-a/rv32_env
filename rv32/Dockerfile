@@ -43,5 +43,5 @@ RUN export PATH=$PATH:$RV32/pk/riscv32-unknown-elf/bin
 
 RUN echo 'export PATH=$PATH:$RV32/riscv32-unknown-elf' >> ~/.bashrc && source ~/.bashrc
 
-RUN cd /work
+RUN mkdir /workdir && cd /workdir
 RUN echo 'Hello, World'
