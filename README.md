@@ -1,2 +1,2 @@
 # rv32_env
-RV32 environment using Docker
+RV32GC compiling environment using Docker
