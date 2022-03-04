@@ -35,6 +35,7 @@ RUN git clone https://github.com/riscv-software-src/riscv-pk.git
 RUN cd riscv-pk && \
     git reset --hard 423801e35d048187d88fcbff55e20c4c34d27bee && \
     mkdir build && cd build && \
+    export PATH=$PATH:$RV32/cross/bin && \
     ../configure --prefix=$RV32/pk --host=riscv32-unknown-elf && \
     make && \
     make install
