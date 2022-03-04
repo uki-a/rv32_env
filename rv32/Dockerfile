@@ -27,7 +27,8 @@ RUN cd riscv-isa-sim && \
     mkdir build && cd build && \
     ../configure --prefix=$RV32/spike --with-isa=rv32gc && \
     make && \
-    make install
+    make install && \
+    cd ../../
 RUN export PATH=$PATH:$RV32/spike/bin
 
 RUN git clone https://github.com/riscv-software-src/riscv-pk.git
