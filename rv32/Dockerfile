@@ -15,8 +15,7 @@ ENV RV32 /opt/rv32gc
 RUN cd riscv-gnu-toolchain && \
     mkdir build && cd build && \
     ../configure --prefix=$RV32/cross --with-arch=rv32gc --with-abi=ilp32d && \
-    make -j$(nproc) && \
-    cd ../../
+    make -j$(nproc)
 
 RUN echo 'export PATH=$PATH:$RV32/cross/bin' >> ~/.bashrc && source ~/.bashrc
 RUN export PATH=$PATH:$RV32/cross/bin
@@ -27,9 +26,9 @@ RUN cd riscv-isa-sim && \
     mkdir build && cd build && \
     ../configure --prefix=$RV32/spike --with-isa=rv32gc && \
     make && \
-    make install && \
-    cd ../../
-RUN export PATH=$PATH:$RV32/spike/bin
+    make install
+    
+RUN echo 'export PATH=$PATH:$RV32/spike/bin' >> ~/.bashrc
 
 RUN git clone https://github.com/riscv-software-src/riscv-pk.git
 RUN cd riscv-pk && \
@@ -41,7 +40,6 @@ RUN cd riscv-pk && \
     make install
 RUN export PATH=$PATH:$RV32/pk/riscv32-unknown-elf/bin
 
-RUN echo 'export PATH=$PATH:$RV32/riscv32-unknown-elf' >> ~/.bashrc && source ~/.bashrc
+RUN echo 'export PATH=$PATH:$RV32/pk/riscv32-unknown-elf' >> ~/.bashrc
 
-RUN mkdir /workdir && cd /workdir
-RUN echo 'Hello, World'
+WORKDIR /workdir
