@@ -17,8 +17,7 @@ RUN cd riscv-gnu-toolchain && \
     ../configure --prefix=$RV32/cross --with-arch=rv32gc --with-abi=ilp32d && \
     make -j$(nproc)
 
-RUN echo 'export PATH=$PATH:$RV32/cross/bin' >> ~/.bashrc && source ~/.bashrc
-RUN export PATH=$PATH:$RV32/cross/bin
+RUN echo 'export PATH=$PATH:$RV32/cross/bin' >> ~/.bashrc
 
 RUN apt install device-tree-compiler
 RUN git clone https://github.com/riscv-software-src/riscv-isa-sim.git
@@ -38,7 +37,6 @@ RUN cd riscv-pk && \
     ../configure --prefix=$RV32/pk --host=riscv32-unknown-elf && \
     make && \
     make install
-RUN export PATH=$PATH:$RV32/pk/riscv32-unknown-elf/bin
 
 RUN echo 'export PATH=$PATH:$RV32/pk/riscv32-unknown-elf' >> ~/.bashrc
 
