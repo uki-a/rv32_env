@@ -38,6 +38,6 @@ RUN cd riscv-pk && \
     make && \
     make install
 
-RUN echo 'export PATH=$PATH:$RV32/pk/riscv32-unknown-elf' >> ~/.bashrc
+RUN echo 'export PATH=$PATH:$RV32/pk/riscv32-unknown-elf/bin' >> ~/.bashrc
 
 WORKDIR /workdir
