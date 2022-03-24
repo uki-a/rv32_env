@@ -14,6 +14,7 @@ After installing [Docker](https://www.docker.com/), run the command to build the
 This will take a while.
 
 ```
+cd rv32
 docker build -t ubuntu/rv32:1.0 .
 ```
 
